@@ -1,6 +1,6 @@
 <?php
 
-namespace TenUp\Unmask;
+namespace EAMann\Unmask;
 
 use PHPUnit_Framework_TestResult;
 use Text_Template;

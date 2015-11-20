@@ -3,16 +3,16 @@
  * Plugin Name: Unmask
  * Plugin URI:  https://github.com/ericmann/unmask
  * Description: Expose support for WordPress
- * Version:     0.1.0
+ * Version:     1.0.0
  * Author:      Eric Mann
  * Author URI:  https://eamann.com
- * License:     GPLv2+
+ * License:     MIT
  * Text Domain: unmask
  * Domain Path: /languages
  */
 
 /**
- * Copyright (c) 2015 10up (email : info@10up.com)
+ * Copyright (c) 2015 10up (email : eric@eamann.com)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2 or, at
@@ -36,7 +36,7 @@
  */
 
 // Useful global constants
-define( 'UNMASK_VERSION', '0.1.0' );
+define( 'UNMASK_VERSION', '1.0.0' );
 define( 'UNMASK_URL',     plugin_dir_url( __FILE__ ) );
 define( 'UNMASK_PATH',    dirname( __FILE__ ) . '/' );
 define( 'UNMASK_INC',     UNMASK_PATH . 'includes/' );
@@ -44,10 +44,9 @@ define( 'UNMASK_INC',     UNMASK_PATH . 'includes/' );
 // Include files
 require_once UNMASK_INC . 'functions/core.php';
 
-
 // Activation/Deactivation
-register_activation_hook( __FILE__, '\TenUp\Unmask\Core\activate' );
-register_deactivation_hook( __FILE__, '\TenUp\Unmask\Core\deactivate' );
+register_activation_hook(   __FILE__, '\EAMann\Unmask\Core\activate' );
+register_deactivation_hook( __FILE__, '\EAMann\Unmask\Core\deactivate' );
 
 // Bootstrap
-TenUp\Unmask\Core\setup();
+EAMann\Unmask\Core\setup();

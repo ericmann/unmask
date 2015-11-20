@@ -1,5 +1,5 @@
 <?php
-namespace TenUp\Unmask\Core;
+namespace EAMann\Unmask\Core;
 
 /**
  * This is a very basic test case to get things started. You should probably rename this and make
@@ -13,7 +13,7 @@ namespace TenUp\Unmask\Core;
  *   - https://github.com/10up/wp_mock
  */
 
-use TenUp\Unmask as Base;
+use EAMann\Unmask as Base;
 
 class Core_Tests extends Base\TestCase {
 
@@ -26,8 +26,8 @@ class Core_Tests extends Base\TestCase {
 	 */
 	public function test_setup() {
 		// Setup
-		\WP_Mock::expectActionAdded( 'init', 'TenUp\Unmask\Core\i18n' );
-		\WP_Mock::expectActionAdded( 'init', 'TenUp\Unmask\Core\init' );
+		\WP_Mock::expectActionAdded( 'init', 'EAMann\Unmask\Core\i18n' );
+		\WP_Mock::expectActionAdded( 'init', 'EAMann\Unmask\Core\init' );
 		\WP_Mock::expectAction( 'unmask_loaded' );
 
 		// Act

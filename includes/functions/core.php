@@ -1,5 +1,5 @@
 <?php
-namespace TenUp\Unmask\Core;
+namespace EAMann\Unmask\Core;
 
 /**
  * Default setup routine
@@ -14,8 +14,9 @@ function setup() {
 		return __NAMESPACE__ . "\\$function";
 	};
 
-	add_action( 'init', $n( 'i18n' ) );
-	add_action( 'init', $n( 'init' ) );
+	add_action( 'init',           $n( 'i18n' ) );
+	add_action( 'init',           $n( 'init' ) );
+	add_action( 'plugins_loaded', $n( 'scan_request' ) );
 
 	do_action( 'unmask_loaded' );
 }
@@ -70,5 +71,12 @@ function activate() {
  * @return void
  */
 function deactivate() {
+
+}
+
+/**
+ * Fire up the Expose engine and actually scan the request.
+ */
+function scan_request() {
 
 }
