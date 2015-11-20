@@ -112,6 +112,11 @@ class Logger implements  LoggerInterface {
 	 * @return boolean Success/fail of logging
 	 */
 	public function log( $level, $message, array $context = array() ) {
+		// Don't store empty contexts
+		if ( empty( $context ) ) {
+			return;
+		}
+
 		$post = array(
 			'post_title'   => ucfirst( $level ) . ' - ' . $message,
 			'post_content' => json_encode( $context ),

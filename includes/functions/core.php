@@ -120,7 +120,6 @@ function register_post_type() {
 function get_request_data() {
 	$data = array(
 		'REQUEST' => $_REQUEST,
-		'SERVER'  => $_SERVER,
 	);
 
 	/**
