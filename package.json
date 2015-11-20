@@ -2,11 +2,11 @@
   "name": "unmask",
   "title": "Unmask",
   "description": "Expose support for WordPress",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/ericmann/unmask",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ericmann/unmask.git"
   },
   "author": {
     "name": "Eric Mann",
