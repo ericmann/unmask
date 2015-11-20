@@ -17,10 +17,11 @@ function setup() {
 		return __NAMESPACE__ . "\\$function";
 	};
 
-	add_action( 'init',           $n( 'i18n' ) );
-	add_action( 'init',           $n( 'init' ) );
-	add_action( 'unmask_init',    $n( 'register_post_type' ) );
-	add_action( 'plugins_loaded', $n( 'scan_request' ) );
+	add_action( 'init',                         $n( 'i18n' )                      );
+	add_action( 'init',                         $n( 'init' )                      );
+	add_action( 'unmask_init',                  $n( 'register_post_type' )        );
+	add_action( 'plugins_loaded',               $n( 'scan_request' )              );
+	add_action( 'unmask_expose_request_impact', $n( 'maybe_email_report' ), 10, 2 );
 
 	do_action( 'unmask_loaded' );
 }
@@ -149,7 +150,67 @@ function scan_request() {
 	/**
 	 * Dispatch any events tied to a specific impact level for the current request.
 	 *
-	 * @param int $impact Impact score
+	 * @param int            $impact  Impact score
+	 * @param Expose\Manager $manager Actual manager instance
 	 */
-	do_action( 'unmask_expose_request_impact', $manager->getImpact() );
+	do_action( 'unmask_expose_request_impact', $manager->getImpact(), $manager );
+}
+
+/**
+ * Depending on user settings, maybe send an email to the admin.
+ *
+ * @param int            $impact
+ * @param Expose\Manager $manager
+ */
+function maybe_email_report( $impact, $manager ) {
+	/**
+	 * Filter the minimum threshold after which the site admin is notified of the issue.
+	 *
+	 * @param int $threshold Minimum notification threshold (12).
+	 */
+	$minimum_impact = apply_filters( 'unmask_expose_impact_notify_threshold', 12 );
+
+	// If the impact isn't above our threshold, return
+	if ( $impact < $minimum_impact ) {
+		return;
+	}
+
+	/**
+	 * Email address to which we're sending the notifications when an impact is above the speciifed threshold.
+	 *
+	 * @param string $to_email Administrator responsible for Unmask data (site admin by default)
+	 */
+	$to = apply_filters( 'unmask_expose_notify_recipient', get_site_option( 'admin_email' ) );
+
+	/**
+	 * Email subject line to use when sending notifications.
+	 *
+	 * @param string $subject Subject line to use
+	 */
+	$subject = apply_filters( 'unmask_expose_notify_subject', __( 'Unmask Site Alert', 'unmask' ) );
+
+	/**
+	 * Filter the default from name for Unmask email notifications.
+	 *
+	 * @param string $from_name Default sender name
+	 */
+	$from_name = apply_filters( 'unmask_Expose_notify_from_name', __( 'WordPress Unmask', 'unmask' ) );
+
+	/**
+	 * Filter the default from email for Unmask email notifications.
+	 *
+	 * @param string $from_email Default sender email
+	 */
+	$from_email = apply_filters( 'unmask_expose_notify_from_email', 'unmask@' . get_option( 'siteurl' ) );
+
+	// Build out the email headers
+	$headers = array( sprintf( 'From: "%s" <%s>', $from_name, $from_email ) );
+
+	// Actually send the message
+	wp_mail( $to, $subject, $manager->export(), $headers );
+
+	/**
+	 * Event to signal that an email notification has been sent
+	 */
+	do_action( 'umask_expose_impact_notify_email_sent' );
 }
