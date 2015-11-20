@@ -124,6 +124,18 @@ function get_request_data() {
 		'REQUEST' => $_REQUEST,
 	);
 
+	// Default exceptions
+	unset( $data['REQUEST']['comment'] );
+	unset( $data['REQUEST']['permalink_structure'] );
+	unset( $data['REQUEST']['selection'] );
+	unset( $data['REQUEST']['content'] );
+	unset( $data['REQUEST']['__utmz'] );
+	unset( $data['REQUEST']['s_pers'] );
+	unset( $data['REQUEST']['user_pass'] );
+	unset( $data['REQUEST']['pass1'] );
+	unset( $data['REQUEST']['pass2'] );
+	unset( $data['REQUEST']['password'] );
+
 	/**
 	 * Filter the parameters passed by Unmask to Expose to either add or remove data for the scan.
 	 *
@@ -167,9 +179,9 @@ function maybe_email_report( $impact, $manager ) {
 	/**
 	 * Filter the minimum threshold after which the site admin is notified of the issue.
 	 *
-	 * @param int $threshold Minimum notification threshold (12).
+	 * @param int $threshold Minimum notification threshold (20).
 	 */
-	$minimum_impact = apply_filters( 'unmask_expose_impact_notify_threshold', 12 );
+	$minimum_impact = apply_filters( 'unmask_expose_impact_notify_threshold', 20 );
 
 	// If the impact isn't above our threshold, return
 	if ( $impact < $minimum_impact ) {
