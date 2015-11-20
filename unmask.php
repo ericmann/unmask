@@ -42,6 +42,8 @@ define( 'UNMASK_PATH',    dirname( __FILE__ ) . '/' );
 define( 'UNMASK_INC',     UNMASK_PATH . 'includes/' );
 
 // Include files
+require_once UNMASK_PATH . 'vendor/autoload.php';
+require_once UNMASK_INC . 'EAMann/Unmask/Log.php';
 require_once UNMASK_INC . 'functions/core.php';
 
 // Activation/Deactivation

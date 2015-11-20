@@ -110,4 +110,14 @@ class Core_Tests extends Base\TestCase {
 
 		// Verify
 	}
+
+	/**
+	 * Test the request data generator and filter
+	 */
+	public function test_request_data() {
+		$data = get_request_data();
+
+		$this->assertArrayHasKey( 'REQUEST', $data );
+		$this->assertArrayHasKey( 'SERVER', $data );
+	}
 }
