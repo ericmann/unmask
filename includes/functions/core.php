@@ -105,6 +105,7 @@ function register_post_type() {
 			'read_post'          => 'activate_plugins',
 			'read_private_posts' => 'do_not_allow',
 			'delete_post'        => 'activate_plugins',
+			'create_posts'       => 'do_not_allow',
 		),
 		'rewrite'      => false,
 		'query_var'    => false,
