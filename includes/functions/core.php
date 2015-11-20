@@ -22,6 +22,7 @@ function setup() {
 	add_action( 'unmask_init',                  $n( 'register_post_type' )        );
 	add_action( 'plugins_loaded',               $n( 'scan_request' )              );
 	add_action( 'unmask_expose_request_impact', $n( 'maybe_email_report' ), 10, 2 );
+	add_action( 'add_meta_boxes_unmask_log',    $n( 'add_content_box' )           );
 
 	do_action( 'unmask_loaded' );
 }
@@ -109,9 +110,39 @@ function register_post_type() {
 		),
 		'rewrite'      => false,
 		'query_var'    => false,
+		'supports'     => array(
+			'title',
+		),
 	);
 
 	\register_post_type( 'unmask_log', $args );
+}
+
+/**
+ * Add a custom metabox to display report content
+ */
+function add_content_box() {
+	\add_meta_box(
+		'unmask-report-context',               // id
+		__( 'Report Context', 'unmask' ),      // title
+		__NAMESPACE__ . '\render_content_box', // callback
+		'unmask_log',                          // screen
+		'normal',                              // context
+		'default'                              // priority
+	);
+}
+
+/**
+ * Render the metabox to display context content.
+ *
+ * @param \WP_Post $post
+ */
+function render_content_box( $post ) {
+	$context = unserialize( base64_decode( $post->post_content ) );
+
+	echo '<pre style="overflow-x: scroll;">';
+	print_r( $context );
+	echo '</pre>';
 }
 
 /**

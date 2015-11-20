@@ -119,7 +119,7 @@ class Logger implements  LoggerInterface {
 
 		$post = array(
 			'post_title'   => ucfirst( $level ) . ' - ' . $message,
-			'post_content' => json_encode( $context ),
+			'post_content' => base64_encode( serialize( $context ) ),
 			'post_status'  => 'publish',
 			'post_type'    => 'unmask_log',
 		);
