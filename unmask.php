@@ -12,7 +12,7 @@
  */
 
 /**
- * Copyright (c) 2015 10up (email : eric@eamann.com)
+ * Copyright (c) 2018 Eric Mann <eric@eamann.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2 or, at
@@ -27,12 +27,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
- */
-
-/**
- * Built using yo wp-make:plugin
- * Copyright (c) 2015 10up, LLC
- * https://github.com/10up/generator-wp-make
  */
 
 // Useful global constants

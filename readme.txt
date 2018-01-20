@@ -1,9 +1,10 @@
 === Unmask ===
-Contributors:      Eric Mann
-Donate link:       https://eamann.com
-Tags: 
-Requires at least: 4.3.1
-Tested up to:      4.3.1
+Contributors:      ericmann
+Donate link:       https://paypal.me/eam
+Tags:              intrusion detection, logging, security
+Requires at least: 4.9.0
+Tested up to:      4.9.2
+Requires PHP:      7.0
 Stable tag:        1.0.0
 License:           MIT
 License URI:       https://opensource.org/licenses/MIT
@@ -26,13 +27,14 @@ Expose support for WordPress
 
 == Screenshots ==
 
+None
 
 == Changelog ==
 
-= 0.1.0 =
+= 1.0.0 =
 * First release
 
 == Upgrade Notice ==
 
-= 0.1.0 =
+= 1.0.0 =
 First Release

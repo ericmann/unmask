@@ -2,13 +2,13 @@
 
 namespace EAMann\Unmask;
 
-use PHPUnit_Framework_TestResult;
+use PHPUnit\Framework\TestResult;
 use Text_Template;
 use WP_Mock;
 use WP_Mock\Tools\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase {
-	public function run( PHPUnit_Framework_TestResult $result = null ) {
+	public function run( TestResult $result = null ) {
 		$this->setPreserveGlobalState( false );
 		return parent::run( $result );
 	}
